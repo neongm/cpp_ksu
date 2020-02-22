@@ -1,3 +1,4 @@
+#pragma once
 std::vector<std::string> separate(std::string const &s, std::string sep=" "){
     int ind_begin, ind2_end = 0;
     std::vector<std::string> vec;
