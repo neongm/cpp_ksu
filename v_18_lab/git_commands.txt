@@ -1,0 +1,19 @@
+git config --global user.name "My Name"
+git config --global user.email myEmail@example.com
+git init
+git remote add origin https://github.com/tutorialzine/awesome-project.git
+git clone https://github.com/tutorialzine/awesome-project.git
+
+git status
+git add hello.txt / git add -A
+git commit -m "коментарий коммита"
+git push origin master
+git pull origin master
+
+git reset --hard origin/master - сброс до того, что было на сервере
+
+git branch amazing_new_feature - создание новой ветки
+git branch - узнать ветки
+git checkout *имяветки* - переход на другую
+git merge *имяветки* - слияние
+git branch -d *имяветки* - удаление
