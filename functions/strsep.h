@@ -1,10 +1,10 @@
-std::vector<std::string> separate(std::string *s, std::string sep=" "){
-    int ind1, ind2 = 0;
+std::vector<std::string> separate(std::string &s, std::string sep=" "){
+    int ind_begin, ind2_end = 0;
     std::vector<std::string> vec;
     do{
-        ind2 = (*s).find(sep, ind1);
-        vec.push_back((*s).substr(ind1, ind2-ind1));
-        ind1 = ind2+sep.size();
-    }while(ind2!=-1);
+        ind2_end = s.find(sep, ind_begin);
+        vec.push_back(s.substr(ind_begin, ind2_end-ind_begin));
+        ind_begin = ind2_end+sep.size();
+    }while(ind2_end!=-1);
     return vec;
-}
+}                    //not working with empty line in separator
