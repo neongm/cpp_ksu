@@ -1,5 +1,7 @@
 #pragma once
-void vecout(std::vector<std::string> const &vec){
+
+template <typename T>
+void vecout(const T& vec){
     std::cout<<"[";
     for(int i=0; i<vec.size();i++){
         std::cout<<vec.at(i);

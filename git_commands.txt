@@ -6,14 +6,14 @@ git clone https://github.com/tutorialzine/awesome-project.git
 
 git status
 git add hello.txt / git add -A
-git commit -m "коментарий коммита"
+git commit -m "comment"
 git push origin master
 git pull origin master
 
-git reset --hard origin/master - сброс до того, что было на сервере
+git reset --hard origin/master - hard reset
 
-git branch amazing_new_feature - создание новой ветки
-git branch - узнать ветки
-git checkout *имяветки* - переход на другую
-git merge *имяветки* - слияние
-git branch -d *имяветки* - удаление
+git branch **
+git branch 
+git checkout ** 
+git merge ** 
+git branch -d **
