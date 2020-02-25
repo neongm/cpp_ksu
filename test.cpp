@@ -15,6 +15,6 @@ int main(){
     std::cout<<"\n integrals:\n";
     vecout(intvec);
     std::cout<<"\n multiplied:\n";
-    for(int i=0; i<)
+    for(int i=0; i<intvec.size(); i++) intvec.at(i)*=2;
     for(int i=0; i<intvec.size(); i++) std::cout<<intvec.at(i)*2<<' ';
 }
