@@ -1,5 +1,7 @@
 #include <iostream>
 #include "randint.h"
+// заадано множество точек на плоскости. Выбрать из них четыре разные точки, 
+//  которые являются вершинами квадрата наибольшего периметра.
 
 int main(){
     int N = 5;
@@ -15,16 +17,16 @@ int main(){
     int s_max=0, s_min=20, temp=0, max_index=0, min_index=0;  
     for(int i=0; i<N; i++){
         temp=a[i][0]+a[i][1];
-        s_max = temp>s_max ? temp:s_max;   // самая правая верхняя через сумму
         if(temp>s_max) {
             s_max = temp;
             max_index = i;
-        }                     // todo
+        }       
         else if(temp<s_min) {
             s_min = temp;
             min_index = i;
         }
     }
-    std::cout<<'\n'<<s_max<<' '<<max_index;
-    std::cout<<'\n'<<s_min<<' '<<min_index;
+    std::cout<<"\nточки, которые являются вершинами квадрата наибольшего периметра: \n"
+             <<"M1("<<a[min_index][0]<<"; "<<a[min_index][1]<<")\n"
+             <<"M2("<<a[max_index][0]<<"; "<<a[max_index][1]<<")"<<std::endl;
 }
