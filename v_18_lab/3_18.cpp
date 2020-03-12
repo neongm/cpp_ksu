@@ -14,8 +14,17 @@ void vecout(const T& vec){
     std::cout<<']';
 }                   // just outputs vector to console
 
+template <typename T>
+int count(const T& str, const char& und){
+    int counter=0;
+    for(int i=0; i<str.size(); i++){
+        if(str[i]==und) counter+=1;
+    }
+    return counter;
+}                  
+
+
 int main(){
-    std::set<char> set_char;
     std::string str;
     std::string temp;
     getline(std::cin, str);
@@ -23,12 +32,13 @@ int main(){
     std::string result;
     //std::cout<"str="<<str<<"\nsep_index="<<sep_index<<"\ndelta="<<delta<<std::endl;
     for(int i=0; i<sep_index; i++){
-        std::cout<<str[i]<<"  i="<<i<<std::endl;
+        //std::cout<<str[i]<<"  i="<<i<<std::endl;
         for(int j=sep_index+1; j<str.size(); j++){
-            std::cout<<"comparing i="<<str[i]<<" to j="<<str[j]<<std::endl;
+            //std::cout<<"comparing i="<<str[i]<<" to j="<<str[j]<<std::endl;
             if(str[i]==str[j]){
+                if(count(count(str.substr(0, sep_index), str[j])))
                 result+=str[i];
-                std::cout<<"adding i="<<str[i]<<" to result, result = "<<result<<std::endl;
+                //std::cout<<"adding i="<<str[i]<<" to result, result = "<<result<<std::endl;
             }
         }
     std::cout<<"\n"<<result<<std::endl;
