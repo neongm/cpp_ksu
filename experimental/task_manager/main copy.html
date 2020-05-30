@@ -1,0 +1,171 @@
+<!DOCTYPE HTML5>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        window.onload = show_all_tabs;
+
+        var db = openDatabase("TODO", "0.1", "A list of to do items.", 200000);
+
+
+        function db_init(){
+            if(!db){alert("Failed to connect to database.");}else{alert("connected")}
+
+            db.transaction(function(tx)  {
+                tx.executeSql("SELECT COUNT(*) FROM TODO", [], function (result) { alert('exists') }, function (tx, error) {
+                tx.executeSql("CREATE TABLE TODO (task_name TEXT, task_description TEXT, task_state TEXT)", null, null);
+            })});
+        }
+
+
+        function delete_db(){
+            db.transaction(function(tx)  {
+                tx.executeSql("DROP TABLE TODO")});
+        }
+
+
+        function db_add(arr_values){
+
+            db.transaction(function(tx)  {
+                tx.executeSql("INSERT INTO TODO (task_name, task_description, task_state) values(?,?,?)", 
+                arr_values, 
+                function(result){console.log("done")},               function(result){alert("done")},
+                function(tx, error){alert("FUCK")});
+            });
+        }
+
+        function db_add_task(){
+            temp_task_name = document.getElementById('task_name').value;
+            temp_task_description = document.getElementById('task_description').value;
+            temp_task_state = document.getElementById('task_state').value; 
+            db_add([temp_task_name, temp_task_description, temp_task_state]);
+            temp_task_name.innerHTML="";
+            temp_task_description.innerHTML="";
+            temp_task_state.innerHTML="";
+            show_all_tabs();
+        }
+
+        function db_del(tab_name){
+            console.log('DELETE FROM TODO WHERE task_name="'+tab_name+'";');
+            db.transaction(function(tx)  {
+                tx.executeSql('DELETE FROM TODO WHERE task_name="'+tab_name+'";',[],
+                function(result){console.log("done")},
+                function(tx, error){alert("FUCK")});
+            });
+            document.getElementById(tab_name).remove();;
+            show_all_tabs()
+        }
+                                                                           // TAB CONSTRUCTOR
+        function create_tab(id, taskName, taskDescription, taskState){
+            //create_tab(1, "task", "taskDescription", "taskState")
+            var container = document.getElementById("container");
+            var div = document.createElement("div");
+            div.className = "tab_container";
+            div.id=id
+
+            var div_name = document.createElement("div");
+            div_name.className = "name_container";
+            var tab_name= document.createElement("div");
+            tab_name.innerHTML=taskName;
+            div_name.appendChild(tab_name)
+            var del_button = document.createElement("button");
+            del_button.innerHTML="X";
+            del_button.className="del_button";
+            del_button.setAttribute("onclick", 'db_del("'+taskName+'")')
+            div_name.appendChild(del_button);
+            div.appendChild(div_name);
+
+            var div_desc = document.createElement("div");
+            div_desc.className = "tab_desc";
+            div_desc.innerHTML = taskDescription;
+            div.appendChild(div_desc);
+            var div_st = document.createElement("div");
+            div_st.className = "tab_st";
+            div_st.innerHTML = taskState;
+            div.appendChild(div_st);
+
+            container.appendChild(div);
+        }
+        
+        
+        function show_all_tabs(){
+
+        db.transaction(function(tx) {
+            tx.executeSql("SELECT * FROM TODO", [], function(tx, result) {
+            var container = document.getElementById("container");
+            var tabs = container.childNodes;
+
+            for(var i = 0; i < result.rows.length; i++) {
+                flag = true;
+                for(let node of tabs){
+                    if(result.rows.item(i)['task_name'] == node.id){
+                        flag = false;
+                    }
+                }
+                if(flag){
+                    create_tab(result.rows.item(i)['task_name'],
+                    result.rows.item(i)['task_name'],
+                    result.rows.item(i)['task_description'],
+                    result.rows.item(i)['task_state'],)
+                }
+            }}, null)});
+        }
+
+        function ssshow_all_tabs(){
+
+            db.transaction(function(tx) {
+                tx.executeSql("SELECT * FROM TODO", [], function(tx, result) {
+                var container = document.getElementById("container");
+                var tabs = container.childNodes;
+    
+                for(var i = 0; i < result.rows.length; i++) {
+                    flag = true;
+                    for(let node of tabs){
+                        if(result.rows.item(i)['task_name'] == node.id){
+                            flag = false;
+                        }
+                    }
+                    if(flag){
+                        create_tab(result.rows.item(i)['task_name'],
+                        result.rows.item(i)['task_name'],
+                        result.rows.item(i)['task_description'],
+                        result.rows.item(i)['task_state'],)
+                    }
+                }}, null)});
+
+        function task_input_toggle(){
+            var controls_holder = document.getElementById("controls");
+            var saveds_holder = document.getElementById("saveds_holder");
+
+        }
+
+        }
+        
+    </script>
+
+</head>
+    <body>
+        <div id="controls_holder">
+            <div class="controls">
+                <label>task name:</label>
+                <input type="text" id="task_name">
+                <label>task description:</label>
+                <input type="text" id="task_description">
+                <label>task state:</label>
+                <input type="text" id="task_state">
+                <button onclick="db_add_task()">submit</button>
+            </div>
+            <div id="saveds_holder" class="saveds_holder">
+                <div class="saved_links_holder">
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="container" id="container"></div>
+
+    </body>
+
+
+
+</html>
