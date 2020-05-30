@@ -10,7 +10,6 @@ int main(){
     auto vec = separate(st);
     vecout(vec);
     for(int i=0; i<vec.size(); i++){
-        auto temp = vec.at(i);
-        
+        auto temp = vec.at(i);       
     }
 }
