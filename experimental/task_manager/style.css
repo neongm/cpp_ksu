@@ -1,17 +1,27 @@
+
+@import url("font/stylesheet.css");
+
 body{
-    background: #0e0e0e;
+    background: url("images/bg_4.png");
     color:white;
+    background-size: fill;
 }
 input{
     color: white;
     background: #0e0e0e;
     border: 0;
     padding: 5px;
+    font-family: 'Google Sans';
+    font-weight: 500;
 }
 button{
     background: #0e0e0e;
     border: 0;
     padding: 5px;
+    cursor: pointer;
+}
+button:hover{
+    filter: brightness(120%);
 }
 .container {
     display: flex;
@@ -21,18 +31,16 @@ button{
    }
 
 .tab_container{
-    background: #2e2e2e;
     width: 300px;
     height: 150px;
     margin: 5px;
     padding: 5px;
     flex: 0 1 300px;
     flex-grow: 1;
+    overflow: hidden;
 }
 
 .name_container{
-    color: white;
-    font-size: 32px;
     display: flex;
     height: 30px;
     display: flex;
@@ -44,23 +52,121 @@ button{
     flex: 0 2 auto;
 }
 .del_button{
-    width: 30px;
+    width: 24px;
     background: rgb(83, 83, 83);
-    
+    height: 24px;
+    margin: 5px;
+}
+.toggle_button{
+    height: 34px;
+    width: 34px;
+    margin: 5px;
 }
 .tab_st{
     color: grey;
     font-size: 14px;
+    font-family: 'Google Sans';
+    font-weight: 200;
 }
 .tab_desc{
     font-size: 18px;
     color: rgb(206, 206, 206);
+    font-family: 'Google Sans';
+    font-weight: 200;
 }
-
+.hidden{
+    display: none;
+}
 .controls{
+    display: none;
     margin: 5px;
-    background: #2e2e2e;
-    height: 25px;
     padding: 10px;
     font-size: 20px;
+    font-family: 'Google Sans';
+    font-weight: 100;
+}
+.saveds_holder{
+    display: inline;
+}
+
+.saved_links_holder{
+    padding: 10px;
+    margin: 5px;
+    font-size: 20px;
+}
+
+.saved_links{
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 50px;
+    flex-grow: 1;
+}
+.saved_link{
+    background: rgb(83, 83, 83);
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.saved_link_name{
+    color: white;
+    font-family: 'Google Sans';
+    font-size: 15pt;
+}
+
+.black{
+    background: #ffffff93;
+}
+.grey{
+    background: #1111115d
+}
+.rounded{
+    border-radius: 5px;
+}
+.backdrop_blur{ 
+    backdrop-filter: blur(5px) grayscale(0%) brightness(80%);
+}
+.main_container{
+    z-index: 5;
+}
+.shadow{
+    box-shadow: 0 2px 5px rgba(34, 34, 34, 0.411);
+}
+
+.h1_text{
+    font-family: 'Google Sans';
+    font-weight: 500;
+    font-size: 32px;
+    color: rgb(0, 0, 0);
+    text-shadow: 0px 1px 1px #cccccc5b;
+}
+.h2_text{
+    font-family: 'Google Sans';
+    font-weight: 300;
+    font-size: 20px;
+    color: #181818;
+    text-shadow: 0px 1px 1px #cccccc5b;
+}
+.h3_text{
+    font-family: 'Google Sans';
+    font-weight: 200;
+    font-size: 16px;
+    color: #2b2b2b;
+    text-shadow: 0px 1px 1px #cccccc5b;
+}
+.margin{
+    margin: 5px;
+}
+.settings{
+    display: flex;
+    flex-direction: row;
+
+}
+.settings_group{
+    padding: 5px;
+    margin:5px;
 }
