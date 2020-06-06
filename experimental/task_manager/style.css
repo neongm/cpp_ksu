@@ -19,8 +19,10 @@ button{
     border: 0;
     padding: 5px;
     cursor: pointer;
+    transition: all 0.5s ease;
 }
 button:hover{
+    transition: all 0.5s ease;
     filter: brightness(120%);
 }
 .container {
@@ -110,8 +112,12 @@ button:hover{
     padding-left: 10px;
     padding-right: 10px;
     cursor: pointer;
+    transition: all 0.5s ease;
 }
-
+.saved_link:hover{
+    transition: all 0.5s ease;
+    box-shadow: 0 0px 10px rgba(255, 255, 255, 0.384);
+}
 .saved_link_name{
     color: white;
     font-family: 'Google Sans';

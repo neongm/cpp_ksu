@@ -8,24 +8,26 @@
         function show_shit(){
             show_all_tabs();
             show_saved_links();
+            set_background_image();
+            db_init();
         }
         var db = openDatabase("TODO", "0.1", "A list of to do items.", 200000);
 
         function db_init(){
-            if(!db){alert("Failed to connect to database.");}else{alert("connected")}
+            if(!db){console.log("Failed to connect to database.");}else{console.log("connected to database")}
 
             db.transaction(function(tx)  {
-                tx.executeSql("SELECT COUNT(*) FROM TODO", [], function (result) { alert('exists') }, function (tx, error) {
+                tx.executeSql("SELECT COUNT(*) FROM TODO", [], function (result) { console.log('TODO exists') }, function (tx, error) {
                 tx.executeSql("CREATE TABLE TODO (task_name TEXT, task_description TEXT, task_state TEXT)", null, null);
             })});
 
             db.transaction(function(tx)  {
-                tx.executeSql("SELECT COUNT(*) FROM savedlinks", [], function (result) { alert('exists') }, function (tx, error) {
+                tx.executeSql("SELECT COUNT(*) FROM savedlinks", [], function (result) { console.log('savedlinks exists') }, function (tx, error) {
                 tx.executeSql("CREATE TABLE savedlinks (link TEXT, desc TEXT, image TEXT)", null, null);
             })});
 
             db.transaction(function(tx)  {
-                tx.executeSql("SELECT COUNT(*) FROM settings", [], function (result) { alert('exists') }, function (tx, error) {
+                tx.executeSql("SELECT COUNT(*) FROM settings", [], function (result) { console.log('settings exists (unused)') }, function (tx, error) {
                 tx.executeSql("CREATE TABLE settings (key TEXT, value TEXT)", null, null);
             })});
         }
@@ -109,31 +111,6 @@
             return value
         }
 
-        function settings_get2(key){
-            var res = db_custom("SELECT value FROM settings WHERE key=?",[key]);
-            alert(res);
-        }
-
-        function settings_get(key){
-            db.transaction(function(tx) {
-                tx.executeSql("SELECT * FROM settings", [], function(tx, result) {
-                for(var i = 0; i < result.rows.length; i++) {
-                    if(result.rows.item(i)['key'] == key){
-                        value_buff=result.rows.item(i)['value'];
-                    }
-            }}, null)});
-            return value_buff;
-        }
-
-
-
-        function settings_update(key, value){
-            db_custom("UPDATE settings SET value=? WHERE key=?", [value, key]);
-        }
-
-        function settings_add(key, value){
-            db_custom("INSERT INTO settings (key, value) values(?,?)",[key, value]);
-        }
                                                                            // TAB CONSTRUCTOR
         function create_tab(id, taskName, taskDescription, taskState){
             //create_tab(1, "task", "taskDescription", "taskState")
@@ -242,13 +219,22 @@
             container.appendChild(div);
         }
 
-        current_bg = 3
-        function set_background_image(){
-            current_bg+=1;
-            if(current_bg>=5){current_bg=1}
+        
+        function set_background_image(mode){
+            
+            if(localStorage.getItem("current_bg")!=NaN){
+                var current_bg = Number(localStorage.getItem("current_bg"));
+            }else{var current_bg=1;}
+
+            if(mode){
+                current_bg+=1
+                if(current_bg>=5){current_bg=1;}
+                localStorage.setItem("current_bg", current_bg);
+            }
+
             document.getElementById("main_body").style.background = 'url("images/bg_'+current_bg+'.png")';
             document.getElementById("main_body").style.backgroundSize = 'fill';
-            settings_update("current_bg", current_bg)
+
         }
 
     </script>
@@ -276,7 +262,7 @@
                         <button onclick="db_add_task('link')" class="black margin rounded shadow h2_text">submit link</button>
                     </div>
                     <div class="settings_group background_controls black rounded shadow">
-                        <button class="black h2_text shadow margin rounded" onclick="set_background_image()">bg</button>
+                        <button class="black h2_text shadow margin rounded" onclick="set_background_image(true)">bg</button>
                     </div>
                 </div>
             </div>
