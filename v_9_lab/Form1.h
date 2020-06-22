@@ -1,4 +1,4 @@
-//1.9 Напишите программу, которая определяет можно ли из 4 отрезков с данными длинами a,b,c,d составить прямоугольник.
+//1.9 РќР°РїРёС€РёС‚Рµ РїСЂРѕРіСЂР°РјРјСѓ, РєРѕС‚РѕСЂР°СЏ РѕРїСЂРµРґРµР»СЏРµС‚ РјРѕР¶РЅРѕ Р»Рё РёР· 4 РѕС‚СЂРµР·РєРѕРІ СЃ РґР°РЅРЅС‹РјРё РґР»РёРЅР°РјРё a,b,c,d СЃРѕСЃС‚Р°РІРёС‚СЊ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє.
 #pragma once
 
 namespace My19 {
@@ -11,7 +11,7 @@ namespace My19 {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Сводка для Form1
+	/// РЎРІРѕРґРєР° РґР»СЏ Form1
 	/// </summary>
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
@@ -20,13 +20,13 @@ namespace My19 {
 		{
 			InitializeComponent();
 			//
-			//TODO: добавьте код конструктора
+			//TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// Освободить все используемые ресурсы.
+		/// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
 		/// </summary>
 		~Form1()
 		{
@@ -52,14 +52,14 @@ namespace My19 {
 
 	private:
 		/// <summary>
-		/// Требуется переменная конструктора.
+		/// РўСЂРµР±СѓРµС‚СЃСЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Обязательный метод для поддержки конструктора - не изменяйте
-		/// содержимое данного метода при помощи редактора кода.
+		/// РћР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° - РЅРµ РёР·РјРµРЅСЏР№С‚Рµ
+		/// СЃРѕРґРµСЂР¶РёРјРѕРµ РґР°РЅРЅРѕРіРѕ РјРµС‚РѕРґР° РїСЂРё РїРѕРјРѕС‰Рё СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -81,11 +81,12 @@ namespace My19 {
 			// 
 			// button1
 			// 
+			this->button1->Enabled = false;
 			this->button1->Location = System::Drawing::Point(12, 185);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(159, 32);
 			this->button1->TabIndex = 0;
-			this->button1->Text = L"Рассчитать";
+			this->button1->Text = L"Р Р°СЃСЃС‡РёС‚Р°С‚СЊ";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
 			// 
@@ -95,7 +96,7 @@ namespace My19 {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(142, 33);
 			this->button2->TabIndex = 1;
-			this->button2->Text = L"Очистить поля";
+			this->button2->Text = L"РћС‡РёСЃС‚РёС‚СЊ РїРѕР»СЏ";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
 			// 
@@ -105,6 +106,8 @@ namespace My19 {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(232, 20);
 			this->textBox1->TabIndex = 2;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &Form1::textBox3_TextChanged);
+			this->textBox1->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &Form1::textBox1_KeyPress);
 			// 
 			// textBox2
 			// 
@@ -112,6 +115,8 @@ namespace My19 {
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(232, 20);
 			this->textBox2->TabIndex = 3;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &Form1::textBox3_TextChanged);
+			this->textBox2->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &Form1::textBox1_KeyPress);
 			// 
 			// textBox3
 			// 
@@ -120,6 +125,7 @@ namespace My19 {
 			this->textBox3->Size = System::Drawing::Size(232, 20);
 			this->textBox3->TabIndex = 4;
 			this->textBox3->TextChanged += gcnew System::EventHandler(this, &Form1::textBox3_TextChanged);
+			this->textBox3->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &Form1::textBox1_KeyPress);
 			// 
 			// textBox4
 			// 
@@ -138,7 +144,7 @@ namespace My19 {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(66, 13);
 			this->label1->TabIndex = 6;
-			this->label1->Text = L"Сторона АB";
+			this->label1->Text = L"РЎС‚РѕСЂРѕРЅР° РђB";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			// 
 			// label2
@@ -148,10 +154,9 @@ namespace My19 {
 			this->label2->ForeColor = System::Drawing::Color::Yellow;
 			this->label2->Location = System::Drawing::Point(2, 41);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(67, 13);
+			this->label2->Size = System::Drawing::Size(66, 13);
 			this->label2->TabIndex = 7;
-			this->label2->Text = L"Сторона CD";
-			this->label2->Click += gcnew System::EventHandler(this, &Form1::label2_Click);
+			this->label2->Text = L"РЎС‚РѕСЂРѕРЅР° BC";
 			// 
 			// label3
 			// 
@@ -162,7 +167,7 @@ namespace My19 {
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(67, 13);
 			this->label3->TabIndex = 8;
-			this->label3->Text = L"Сторона DE";
+			this->label3->Text = L"РЎС‚РѕСЂРѕРЅР° CD";
 			// 
 			// label4
 			// 
@@ -172,9 +177,8 @@ namespace My19 {
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(163, 17);
 			this->label4->TabIndex = 9;
-			this->label4->Text = L"Ответ";
+			this->label4->Text = L"РћС‚РІРµС‚";
 			this->label4->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
-			this->label4->Click += gcnew System::EventHandler(this, &Form1::label4_Click);
 			// 
 			// button3
 			// 
@@ -182,7 +186,7 @@ namespace My19 {
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(314, 30);
 			this->button3->TabIndex = 10;
-			this->button3->Text = L"Закрыть программу";
+			this->button3->Text = L"Р—Р°РєСЂС‹С‚СЊ РїСЂРѕРіСЂР°РјРјСѓ";
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &Form1::button3_Click);
 			// 
@@ -192,6 +196,8 @@ namespace My19 {
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(231, 20);
 			this->textBox5->TabIndex = 11;
+			this->textBox5->TextChanged += gcnew System::EventHandler(this, &Form1::textBox3_TextChanged);
+			this->textBox5->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &Form1::textBox1_KeyPress);
 			// 
 			// label5
 			// 
@@ -200,10 +206,9 @@ namespace My19 {
 			this->label5->ForeColor = System::Drawing::Color::Yellow;
 			this->label5->Location = System::Drawing::Point(2, 99);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(66, 13);
+			this->label5->Size = System::Drawing::Size(67, 13);
 			this->label5->TabIndex = 12;
-			this->label5->Text = L"Сторона EA";
-			this->label5->Click += gcnew System::EventHandler(this, &Form1::label5_Click);
+			this->label5->Text = L"РЎС‚РѕСЂРѕРЅР° DA";
 			// 
 			// Form1
 			// 
@@ -231,35 +236,34 @@ namespace My19 {
 			this->Name = L"Form1";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"1.9";
+			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-				 int ab,cd,de,ea;
-				 char *answ;
-				 if (textBox1->Text == "" && textBox2->Text =="" && textBox3->Text =="" && textBox5->Text ==""){
-				 ab = Convert::ToInt32(textBox1->Text);
-				 cd = Convert::ToInt32(textBox2->Text);
-				 de = Convert::ToInt32(textBox3->Text);
-				 ea = Convert::ToInt32(textBox5->Text);
-				 }
-				 else answ = "Построить нельзя";
-				 //if (ab == de && cd == ea) {
-					
+				 int ab,bc,cd,da;
+				
+
+					ab = Convert::ToInt32(textBox1->Text);
+					bc = Convert::ToInt32(textBox2->Text);
+					cd = Convert::ToInt32(textBox3->Text);
+					da = Convert::ToInt32(textBox5->Text);
 				 
-				 //}
+				 if ((ab + bc) == (cd + da)) {
+					 textBox4->Text="РњРѕР¶РЅРѕ РїРѕСЃС‚СЂРѕРёС‚СЊ";}
+				 else textBox4->Text="РџРѕСЃС‚СЂРѕРёС‚СЊ РЅРµР»СЊР·СЏ";
 				 
-
-
-
-				 ;
-				 textBox4->Text=Convert::ToString(answ);
+				 textBox4->Show();
+				
 			 }
 	private: System::Void textBox3_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-				 
+				 if (textBox1->Text != "" && textBox2->Text !="" && textBox3->Text !="" && textBox5->Text !="")
+					 button1->Enabled = true;
+				 else button1->Enabled = false;
 			 }
+			 
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 			 Application::Exit();
 	 }
@@ -269,13 +273,17 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 				 textBox3->Text = "";
 				 textBox4->Text = "";
 				 textBox5->Text = "";
+				 button1->Enabled = false;
+				 
 			 }
-private: System::Void label4_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
+			 MessageBox::Show ("РќР°РїРёС€РёС‚Рµ РїСЂРѕРіСЂР°РјРјСѓ, РєРѕС‚РѕСЂР°СЏ РѕРїСЂРµРґРµР»СЏРµС‚ РјРѕР¶РЅРѕ Р»Рё РёР· 4 РѕС‚СЂРµР·РєРѕРІ СЃ РґР°РЅРЅС‹РјРё РґР»РёРЅР°РјРё a,b,c,d СЃРѕСЃС‚Р°РІРёС‚СЊ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє.","Р—Р°РґР°С‡Р° 1.9");
 		 }
-private: System::Void label2_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void label5_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
+		 private: System::Void textBox1_KeyPress(System::Object^  sender, 
+           System::Windows::Forms::KeyPressEventArgs^  e) {
+	if ((e->KeyChar >= '0') && (e->KeyChar <= '9')) 
+	// С†РёС„СЂР° 
+	return; 
+	e->Handled = true;}
 };
 }
-
