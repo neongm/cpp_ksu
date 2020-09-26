@@ -1,0 +1,17 @@
+Создать пустой проект CLR(Framework) //имя должно быть без -
+Добавить элемент UI - форма WF
+
+
+Настройки проекта -> Компоновщик -> Дополнительно -> точка входа =  main
+Настройки проекта -> Компоновщик -> система -> подсиситема = windows
+MyForm.cpp
+#include "MyForm.h"
+#include <Windows.h>
+using namespace Project1; // название проекта
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+Application::EnableVisualStyles();
+Application::SetCompatibleTextRenderingDefault(false);
+Application::Run(gcnew MyForm);
+return 0;
+}
+Перезапустить проект
